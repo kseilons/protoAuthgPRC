@@ -2,7 +2,11 @@ syntax = "proto3";
 
 package auth;
 
-option go_package = "sso.v1;ssov1";
+
+import "validate/validate.proto";
+
+
+option go_package = "github.com:kseilons/protoAuthgPRC;sso";
 
 
 service Auth {
@@ -12,8 +16,8 @@ service Auth {
 }
 
 message RegisterRequest {
-  string email = 1;
-  string password = 2;
+  string email = 1 [(validate.rules).string.email = true];
+  string password = 2 [(validate.rules).string.min_len = 8];
 }
 
 message RegisterResponse {
@@ -21,8 +25,8 @@ message RegisterResponse {
 }
 
 message LoginRequest {
-  string email = 1;
-  string password = 2;
+  string email = 1 [(validate.rules).string.email = true];
+  string password = 2 [(validate.rules).string.min_len = 8];
   int32 app_id = 3;
 }
 
@@ -30,8 +34,9 @@ message LoginResponse {
  string token = 1;
 }
 
+
 message IsAdminRequest {
-  int64 user_id = 1;
+  int64 user_id = 1 [(validate.rules).int64.gt = 0];
 }
 
 message IsAdminResponse {
