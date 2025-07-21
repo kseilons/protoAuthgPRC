@@ -1,4 +1,4 @@
-module protoAuth
+module github.com/kseilons/protoAuthgPRC
 
 go 1.25rc2
 
