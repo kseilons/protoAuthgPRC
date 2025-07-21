@@ -6,7 +6,7 @@ package auth;
 import "validate/validate.proto";
 
 
-option go_package = "github.com:kseilons/protoAuthgPRC;sso";
+option go_package = "sso.v1;ssov1";
 
 
 service Auth {
